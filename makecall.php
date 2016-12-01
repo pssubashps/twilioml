@@ -4,11 +4,15 @@ include "vendor/autoload.php";
 
 use Twilio\Twiml;
 
-$response = new Twiml;
-$dial = $response->dial(array('callerId' => 'tommy'));
-$dial = $response->dial();
-$dial->client('tommy');
 
+        $response = new Twiml();
+        $callerIdNumber = '919496842554';
+
+        $dial = $response->dial(['callerId' => $callerIdNumber]);
+
+        $phoneNumberToDial = '+919901057647';
+
+         $dial->number($phoneNumberToDial);
 
 header('Content-Type: text/xml');
 echo $response;
