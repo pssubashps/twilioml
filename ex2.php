@@ -17,7 +17,7 @@ if (isset($_REQUEST['client'])) {
 
 $capability = new ClientToken($accountSid, $authToken);
 $capability->allowClientOutgoing($appSid);
-//$capability->allowClientIncoming($clientName);
+$capability->allowClientIncoming($clientName);
 $token = $capability->generateToken();
 ?>
 
