@@ -1,6 +1,6 @@
 <?php
 include "vendor/autoload.php";
-//https://github.com/TwilioDevEd/client-quickstart-php
+
 use Twilio\Jwt\ClientToken;
 
 // put your Twilio API credentials here
@@ -10,16 +10,21 @@ $authToken  = '9926944ef142924595b6cc2af21d5b88';
 // put your TwiML Application Sid here
 $appSid = 'AP9ee8a0b157bc56fe9bb36349226d086b';
 
+// get the Twilio Client name from the page request parameters, if given
+if (isset($_REQUEST['client'])) {
+    $clientName = $_REQUEST['client'];
+}
+
 $capability = new ClientToken($accountSid, $authToken);
 $capability->allowClientOutgoing($appSid);
-//$capability->allowClientIncoming('jenny');
+//$capability->allowClientIncoming($clientName);
 $token = $capability->generateToken();
 ?>
 
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Hello Client Monkey 3</title>
+    <title>Hello Client Monkey 5</title>
     <script type="text/javascript"
       src="//media.twiliocdn.com/sdk/js/client/v1.3/twilio.min.js"></script>
     <script type="text/javascript"
@@ -32,7 +37,7 @@ $token = $capability->generateToken();
       Twilio.Device.setup("<?php echo $token; ?>");
 
       Twilio.Device.ready(function (device) {
-        $("#log").text("Ready");
+        $("#log").text("Client '<?php echo $clientName ?>' is ready");
       });
 
       Twilio.Device.error(function (error) {
@@ -54,7 +59,9 @@ $token = $capability->generateToken();
       });
 
       function call() {
-        Twilio.Device.connect();
+        // get the phone number to connect the call to
+        params = {"PhoneNumber": $("#number").val()};
+        Twilio.Device.connect(params);
       }
 
       function hangup() {
@@ -71,6 +78,9 @@ $token = $capability->generateToken();
       Hangup
     </button>
         
+    <input type="text" id="number" name="number"
+      placeholder="Enter a phone number or client to call"/>
+
     <div id="log">Loading pigeons...</div>
   </body>
 </html>
