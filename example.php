@@ -62,7 +62,7 @@ $token = $capability->generateToken();
       }
     </script>
   </head>
-  <body>
+  <body style="background:none;">
     <button class="call" onclick="call();">
       Call
     </button>
