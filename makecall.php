@@ -1,6 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- page located at http://example.com/simple_dial.xml -->
-<Response>
-    <Dial>+919901057647</Dial>
-    <Say>Goodbye</Say>
-</Response>
+<?php
+include "vendor/autoload.php";
+
+
+use Twilio\Twiml;
+
+$response = new Twiml;
+$dial = $response->dial(array('callerId' => 'tommy'));
+$dial = $response->dial();
+$dial->client('tommy');
+
+
+header('Content-Type: text/xml');
+echo $response;
