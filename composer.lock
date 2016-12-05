@@ -4,7 +4,6 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "26793787139c27c6390f2c12cbb41fc8",
     "content-hash": "705ed8d79f0f8e52aebbd1953e8af871",
     "packages": [
         {
@@ -51,7 +50,7 @@
                 "sms",
                 "twilio"
             ],
-            "time": "2016-10-12 17:28:31"
+            "time": "2016-10-12T17:28:31+00:00"
         }
     ],
     "packages-dev": [],
